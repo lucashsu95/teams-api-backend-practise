@@ -30,6 +30,23 @@ class Team:
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }
+def auto_seed_data():
+    """啟動時自動填充初始資料"""
+    if len(teams_db) == 0:
+        print("🌱 檢測到空資料庫，自動填充初始測試資料...")
+        sample_teams = [
+            {"name": "前端開發團隊", "members": ["張三", "李四", "王五"]},
+            {"name": "後端開發團隊", "members": ["趙六", "錢七", "孫八"]},
+            {"name": "UI/UX 設計團隊", "members": ["周九", "吳十"]},
+            {"name": "DevOps 團隊", "members": ["鄭十一", "王十二", "馮十三"]},
+            {"name": "產品管理團隊", "members": ["陳十四", "褚十五"]}
+        ]
+        
+        for team_data in sample_teams:
+            team = Team(team_data["name"], team_data["members"])
+            teams_db[team.id] = team
+        
+        print(f"✅ 已自動建立 {len(sample_teams)} 個初始團隊")
 
 def create_api_response(result=True, error_code="", message="", data=None):
     """建立標準 API 回應格式"""
@@ -232,5 +249,7 @@ def internal_error(error):
     )), 500
 
 if __name__ == '__main__':
+    auto_seed_data()
+    
     port = int(os.environ.get('PORT', 8080))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=False)
