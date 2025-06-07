@@ -1,9 +1,15 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from datetime import datetime
 import uuid
 import os
 
 app = Flask(__name__)
+
+# 配置 CORS - 允許來自前端的跨域請求
+CORS(app, origins=['http://localhost:3000'], 
+     methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+     allow_headers=['Content-Type', 'Authorization'])
 
 # 模擬資料庫 - 在實際應用中應該使用真實資料庫
 teams_db = {}
