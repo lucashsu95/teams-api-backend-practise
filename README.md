@@ -10,65 +10,6 @@
 - Docker 容器化支援
 - RESTful API 設計
 
-## API 端點
-
-### 1. 健康檢查
-```
-GET /health
-```
-
-### 2. 取得所有團隊
-```
-GET /api/teams
-```
-
-### 3. 取得特定團隊
-```
-GET /api/teams/{team_id}
-```
-
-### 4. 新增團隊
-```
-POST /api/teams
-Content-Type: application/json
-
-{
-  "name": "團隊名稱",
-  "members": ["成員1", "成員2"]
-}
-```
-
-### 5. 更新團隊
-```
-PUT /api/teams/{team_id}
-Content-Type: application/json
-
-{
-  "name": "新團隊名稱",
-  "members": ["新成員1", "新成員2"]
-}
-```
-
-### 6. 刪除團隊
-```
-DELETE /api/teams/{team_id}
-```
-
-## API 回應格式
-
-所有 API 都遵循統一的回應格式：
-
-```json
-{
-  "result": true,
-  "errorCode": "",
-  "message": "成功訊息",
-  "data": {
-    // 實際資料
-  }
-}
-```
-
 ## 安裝與執行
 
 ### 方法一：使用 Docker（推薦）
@@ -121,6 +62,22 @@ DELETE /api/teams/{team_id}
    ```
 
 4. **應用程式將在 http://localhost:8080 啟動**
+5. **您可以在瀏覽器中開啟 http://localhost:8080/apidocs 來查看 Swagger API 文件**
+
+## API 回應格式
+
+所有 API 都遵循統一的回應格式：
+
+```json
+{
+  "result": true,
+  "errorCode": "",
+  "message": "成功訊息",
+  "data": {
+    // 實際資料
+  }
+}
+```
 
 ## 手動測試指南
 
