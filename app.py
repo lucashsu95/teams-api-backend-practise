@@ -14,8 +14,9 @@ app.config['SWAGGER'] = {
 }
 swagger = Swagger(app)
 
-# ✅ 啟用跨域
-CORS(app, origins=['http://localhost:3000'],
+# ✅ 啟用跨域 - 允許所有域名訪問
+CORS(app, 
+     origins='*',
      methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
      allow_headers=['Content-Type', 'Authorization'])
 
